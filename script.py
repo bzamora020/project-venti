@@ -3,12 +3,15 @@ from fuzzywuzzy import process
 
 userPosts = []
 generalPosts = []
-dict = {}
+ratiosOfGenPosts = {}
 ratioNumber = []
-for x in userPosts: 
-    for y in generalPosts: 
+
+
+for x in generalPosts: 
+    for y in userPosts: 
         ratio = fuzz.ratio(x,y); 
-
-
+        ratiosOfGenPosts(x,[])
+        a[x].append(ratio)
+ 
 print(fuzz.ratio("This is a test", "this is a test!")); 
 
