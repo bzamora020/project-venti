@@ -1,17 +1,24 @@
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
+def takeRatio(elem):
+    return elem['avg']
 userPosts = []
 generalPosts = []
 ratiosOfGenPosts = {}
 ratioNumber = []
-
+orderedPosts = []
 
 for x in generalPosts: 
     for y in userPosts: 
         ratio = fuzz.ratio(x,y); 
-        ratiosOfGenPosts(x,[])
-        a[x].append(ratio)
+        ratiosOfGenPosts.setdefault(x,[])
+        ratiosOfGenPosts[x].append(ratio)
  
-print(fuzz.ratio("This is a test", "this is a test!")); 
+for x in generalPosts:
+    avg = sum(ratiosOfGenPosts[x])/len(ratiosOfGenPosts[x])
+    ratioNumber.append({"id":x.id,"text":x.test,"avg":avg})
 
+ratioNumber.sort(key=takeRatio)
+
+    
