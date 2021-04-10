@@ -2,6 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import "./CreatePost.css";
+import Navbar from '../Navbar/Navbar';
+
+let title ="Create Post"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,29 +23,22 @@ function CreatePost() {
 
   return (
     <div>
-      <div>
-        <h1>Create Post</h1>
-      </div>
+      <Navbar title={title}/>
       <div className = "wholeForm">
-      <form className={classes.root} noValidate autoComplete="off">
-      <label className="labels"> Enter your tittle: </label>
-
-      <div className = "boxInput">
-        <br></br>
-
-          <TextField id="standard-basic" label="Tittle" />
-        
+        <form className={classes.root} noValidate autoComplete="off">
+          <label className="labels"> Enter your tittle: </label>
+          <div className = "boxInput">
+            <br></br>
+              <TextField id="standard-basic" label="Tittle" />
+          </div>
+          <label className="labels"> Enter your message: </label>
+          <div className = "boxInput">
+            <br></br>
+              <TextField id="standard-basic" label="Message" />
+          </div>
+          <input type="image" src="https://jekyllcodex.org/uploads/grumpycat.jpg" />
+        </form>
       </div>
-      <label className="labels"> Enter your message: </label>
-
-      <div className = "boxInput">
-        <br></br>
-          <TextField id="standard-basic" label="Message" />
-      </div>
-      <input type="image" src="https://jekyllcodex.org/uploads/grumpycat.jpg" />
-      </form>
-      </div>
-
     </div>
   );
 }

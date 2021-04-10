@@ -11,7 +11,7 @@ const UserPosts = (props) => {
         <section>
             {allPosts.map((data) => (
                 <UserPost header={data.header} comment={data.comment}/>
-            ))};
+            ))}
         </section>
     )
 }

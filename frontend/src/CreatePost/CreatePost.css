@@ -1,8 +1,9 @@
 .labels {
   color: black;
-  background-color: white;
+  background-color: #FFF;
 }
 .wholeForm {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
 }
