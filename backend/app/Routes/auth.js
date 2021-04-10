@@ -2,31 +2,9 @@ const express = require('express');
 const auth = express.Router();
 const db = require('../db');
 const bcrypt = require('bcrypt');
+const session = require('./session');
 const { v4: uuidv4 } = require('uuid');
-
 const saltRounds = 10;
-
-function createSessionToken(user_id){
-    return new Promise((resolve,reject)=>{
-        bcrypt.hash(uuidv4(), saltRounds, function(err, hash) {
-            if(err){
-                reject(Error("Failed to hash session token"));
-            }
-            else{
-                let addSessionQuery = `INSERT INTO sessions (token, user_id) VALUES (${db.escape(hash)}, ${db.escape(user_id)})`
-                db.query(addSessionQuery, (error, results)=>{
-                    if(error){
-                        console.error(error);
-                        reject(Error("Failed to insert session token into db"));
-                    }
-                    else{
-                        resolve("Created User Session");
-                    }
-                })
-            }
-        });
-    })
-}
 
 
 auth.post('/register', (req, res)=>{
@@ -59,7 +37,7 @@ auth.post('/register', (req, res)=>{
                                         console.log(results);
                                         let user_id = results[0]['LAST_INSERT_ID()'];
                                         console.log(user_id);
-                                        createSessionToken(user_id)
+                                        session.createSessionToken(user_id)
                                             .then((resp)=>{
                                                 console.log(resp);
                                                 res.status(200).send({msg: resp});
@@ -97,7 +75,7 @@ auth.post('/login', (req, res)=>{
                     }
                     else{
                         if(result){
-                            createSessionToken(results[0].id)
+                            session.createSessionToken(results[0].id)
                                 .then((resp)=>{
                                     console.log(resp);
                                     res.status(200).send({msg: resp});
