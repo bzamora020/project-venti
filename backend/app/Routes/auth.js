@@ -31,6 +31,7 @@ auth.post('/register', (req, res)=>{
             
                                 db.query('SELECT LAST_INSERT_ID()', (error, results)=>{
                                     if(error){
+                                        res.status(500).send({error:"Something went wrong! D:"})
                                         console.error(error);
                                     }
                                     else{
@@ -38,9 +39,10 @@ auth.post('/register', (req, res)=>{
                                         let user_id = results[0]['LAST_INSERT_ID()'];
                                         console.log(user_id);
                                         session.createSessionToken(user_id)
-                                            .then((resp)=>{
+                                            .then((sessionToken)=>{
                                                 console.log(resp);
-                                                res.status(200).send({msg: resp});
+                                                res.cookie('session', sessionToken, { maxAge: 900000, httpOnly: true });
+                                                res.status(200).send({msg: "Created user!"});
                                             })
                                             .catch((error)=>{
                                                 res.status(500).send({error: error})
@@ -76,9 +78,9 @@ auth.post('/login', (req, res)=>{
                     else{
                         if(result){
                             session.createSessionToken(results[0].id)
-                                .then((resp)=>{
-                                    console.log(resp);
-                                    res.status(200).send({msg: resp});
+                                .then((sessionToken)=>{
+                                    res.cookie('session', sessionToken, { maxAge: 900000, httpOnly: true });
+                                    res.status(200).send({msg: "User logged in!"});
                                 })
                                 .catch((error)=>{
                                     res.status(500).send({error: error})

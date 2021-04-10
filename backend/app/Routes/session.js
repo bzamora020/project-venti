@@ -17,7 +17,7 @@ function createSessionToken(user_id){
                         reject(Error("Failed to insert session token into db"));
                     }
                     else{
-                        resolve("Created User Session");
+                        resolve(hash);
                     }
                 })
             }
