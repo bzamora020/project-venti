@@ -4,43 +4,47 @@ import TextField from "@material-ui/core/TextField";
 import "./CreatePost.css";
 import Navbar from '../Navbar/Navbar';
 
-let title ="Create Post"
+let title = "Create Post"
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-      background: "#F2D091",
-      borderRadius: 10,
-    },
-  },
+class CreatePost extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {title: '', content: ''};
 
-}));
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-function CreatePost() {
-  const classes = useStyles();
+  handleTitleChange(event) {
+    this.setState({title: event.target.value});
+  }
+  handleContentChange(event) {
+    this.setState({content: event.target.value});
+  }
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.title + ' ' + this.state.content);
+    event.preventDefault();
+  }
 
-  return (
-    <div>
-      <Navbar title={title}/>
-      <div className = "wholeForm">
-        <form className={classes.root} noValidate autoComplete="off">
-          <label className="labels"> Enter your tittle: </label>
-          <div className = "boxInput">
-            <br></br>
-              <TextField id="standard-basic" label="Tittle" />
-          </div>
-          <label className="labels"> Enter your message: </label>
-          <div className = "boxInput">
-            <br></br>
-              <TextField id="standard-basic" label="Message" />
-          </div>
-          <input type="image" src="https://jekyllcodex.org/uploads/grumpycat.jpg" />
+  render() {
+    return (
+      <div className="container">
+        <Navbar title={title}/>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Title:
+            <input type="text" value={this.state.value} onChange={this.handleTitleChange} />
+          </label>
+          <label>
+            Content:
+            <input type="text" value={this.state.value} onChange={this.handleContentChange} />
+          </label>
+          <input type="submit" value="Submit" />
         </form>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default CreatePost;
