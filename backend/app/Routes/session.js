@@ -27,7 +27,7 @@ function createSessionToken(user_id){
 
 function verifySessionToken(sessionToken){
     return new Promise((resolve, reject)=>{
-        let verifySessionTokenQuery = `SELECT user_id FROM sessions WHERE token=${sessionToken}`;
+        let verifySessionTokenQuery = `SELECT user_id FROM sessions WHERE token="${sessionToken}"`;
         db.query(verifySessionTokenQuery, (error, results)=>{
             if(error){
                 console.error(error);
