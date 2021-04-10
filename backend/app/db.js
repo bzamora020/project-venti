@@ -2,7 +2,8 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
     host     : process.env.VENTI_DB_HOST,
     user     : 'root',
-    password : process.env.VENTI_DB_SECRET
+    password : process.env.VENTI_DB_SECRET,
+    database : 'main'
 });
   
 db.connect(function(err) {

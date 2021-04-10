@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const user = express.Router();
 const db = require('../db');
 
-module.exports = router;
+module.exports = user;
