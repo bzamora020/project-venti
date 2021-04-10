@@ -1,0 +1,32 @@
+.box
+{
+    border: 5px solid #484A57;
+    height: 600px;
+    margin-top: 10%;
+    margin-right: 10%;
+    margin-left: 10%;
+    background: #7394BF;
+    
+}
+
+.topBox
+{
+    border-bottom: 5px solid white;
+    background: #ECB143;
+}
+
+h2
+{
+    display: inline-block;
+    margin-right: 5px;
+}
+label
+{
+    color: white;
+}
+.blog
+{
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Tauri;
+}
