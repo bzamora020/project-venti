@@ -1,0 +1,13 @@
+.labels {
+  color: black;
+  background-color: white;
+}
+.wholeForm {
+  display: flex;
+  justify-content: center;
+}
+
+.boxInput
+{
+    width: 300px;
+}
