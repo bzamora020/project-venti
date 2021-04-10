@@ -9,9 +9,10 @@ function Navbar() {
             <Button id="leftbutton" className="button" variant="contained" color="#FFFFFF">
                 <Link className="link" to="/">Home</Link>
             </Button>
-            <h1 className="title">Venti</h1>
+            <Link className="link" to="/createpost">
+            <h1 className="title">Venti</h1> </Link>
             <Button id="rightbutton" className="button" variant="contained" color="#FFFFFF">
-                <Link className="link" to="/viewpost">Cheer someone up!</Link>
+                <Link className="link" to="/viewpost">Show Love ❤</Link>
             </Button>
         </div>
     )
