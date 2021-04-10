@@ -10,14 +10,13 @@ import Navbar from './Navbar/Navbar'
 function App() {
   return (
     <div className="App">
-      <Navbar/>
       <Route exact path="/" component={Home} />
       <Route expact path="/login" component={Login}/>
       <Route expact path="/register" component={Register}/>
       <Route expact path="/createpost" component={CreatePost}/>
       <Route expact path="/viewpost" component={ViewPost}/>
     </div>
-  );
+  )
 }
 
 export default App;
