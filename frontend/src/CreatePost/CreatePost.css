@@ -1,13 +1,55 @@
-.labels {
-  color: black;
-  background-color: white;
-}
+
 .wholeForm {
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin-top: 2%;
 }
 
 .boxInput
 {
-    width: 300px;
+    width: 1400px;
+    margin-bottom: 3%;
 }
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background-color: #F2D091;
+    outline: none;
+    resize: vertical;
+
+  }
+  input[type=text]:focus {
+    border: 3px solid #686D8C;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background-color: #F2D091;
+    outline: none;
+    resize: vertical;
+
+  }
+  textarea:focus {
+    border: 3px solid #686D8C;
+  }
+
+
+.labels {
+    color: black;
+    margin-left: -85%;
+    font-weight: 500;
+
+  }

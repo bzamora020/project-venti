@@ -2,13 +2,14 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import "./CreatePost.css";
+import Button from "@material-ui/core/Button";
+import heart from "./heart.png"
 
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "25ch",
-      background: "#F2D091",
+      width: '250px',
       borderRadius: 10,
     },
   },
@@ -20,26 +21,24 @@ function CreatePost() {
 
   return (
     <div>
-      <div>
-        <h1>Create Post</h1>
-      </div>
+
       <div className = "wholeForm">
       <form className={classes.root} noValidate autoComplete="off">
-      <label className="labels"> Enter your tittle: </label>
+      <label className= "labels"> Enter your tittle: </label>
 
       <div className = "boxInput">
-        <br></br>
 
-          <TextField id="standard-basic" label="Tittle" />
+      <input type="text" name="name" placeholder="Tittle"/>
         
       </div>
-      <label className="labels"> Enter your message: </label>
+      <label className= "labels"> Enter your message: </label>
 
-      <div className = "boxInput">
-        <br></br>
-          <TextField id="standard-basic" label="Message" />
+      <div className = "boxInput" >
+      <textarea type="text" name="name" placeholder="Message"/>
       </div>
-      <input type="image" src="https://jekyllcodex.org/uploads/grumpycat.jpg" />
+      <Button>
+      <img src= {heart} />
+      </Button>
       </form>
       </div>
 
