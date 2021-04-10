@@ -18,7 +18,7 @@ user.post('/getHome', (req, res)=>{
                         name: results[0].name,
                         posts: [],
                     }
-                    let getUserPostsQuery = `SELECT id, content FROM posts WHERE user_id=${user.user_id}`;
+                    let getUserPostsQuery = `SELECT id, title, content FROM posts WHERE user_id=${user.user_id}`;
                     db.query(getUserPostsQuery, (error, results)=>{
                         if(error){
                             console.error(error);
@@ -29,6 +29,7 @@ user.post('/getHome', (req, res)=>{
                                 for(post in results){
                                     let postObj = {
                                         id: post.id,
+                                        title: post.title,
                                         content: post.conent,
                                         comments: [],
                                     }
