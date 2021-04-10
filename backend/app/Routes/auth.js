@@ -83,7 +83,41 @@ auth.post('/register', (req, res)=>{
 })
 
 auth.post('/login', (req, res)=>{
-
+    let user = req.body;
+    db.query(`SELECT id, email, password FROM users WHERE email=${db.escape(user.email)}`, (error, results)=>{
+        if(error){
+            console.error(error);
+            res.status(500).send({error:"Something went wrong ):"})
+        }
+        else{
+            if(results.length > 0){
+                bcrypt.compare(user.password, results[0].password, function(err, result) {
+                    if(err){
+                        console.error(err);
+                    }
+                    else{
+                        if(result){
+                            createSessionToken(results[0].id)
+                                .then((resp)=>{
+                                    console.log(resp);
+                                    res.status(200).send({msg: resp});
+                                })
+                                .catch((error)=>{
+                                    res.status(500).send({error: error})
+                                })
+                        }
+                        else{
+                            console.log("USER PUT IN WRONG PASSWORD!");
+                            res.status(404).send({msg: "Could not find user with such a email/password :/"})
+                        }
+                    }
+                });
+            }
+            else{
+                res.status(404).send({msg: "Could not find user with such a email/password :/"})
+            }
+        }
+    });
 })
 
 module.exports = auth;
