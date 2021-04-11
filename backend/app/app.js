@@ -12,9 +12,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.use(bodyParser.json())
 
-
-
-const root = require('path').join(__dirname,'build')
+const root = require('path').join(__dirname,'build');
 
 app.use(express.static(root));
 app.get("*", (req, res) => {

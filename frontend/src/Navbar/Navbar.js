@@ -5,7 +5,7 @@ import './Navbar.css'
 
 const Navbar = (props) => (
     <div className="navbar">
-            <Link className="link" to="/">
+            <Link className="link" to="/home">
                 <Button id="leftbutton" className="button" variant="contained" color="#FFFFFF">
                     Home
                 </Button>
