@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const UserPost = (props) => (
   <div>
-    <p>{props.title}</p>
-    <p>{props.content}</p>
+    <Button>
+      <div id="testing">
+        <p>{this.props.title}</p>
+        <p id="message">{this.props.comment}</p>
+      </div>
+    </Button>
   </div>
 )
 
