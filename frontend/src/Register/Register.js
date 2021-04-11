@@ -1,19 +1,47 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import Navbar from '../Navbar/Navbar';
 
-function Register() {
+let title = "Register"
+
+class Register extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {email: '', password: ''};
+
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleEmailChange(event) {
+    this.setState({email: event.target.value});
+  }
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value});
+  }
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.email + ' ' + this.state.password);
+    event.preventDefault();
+  }
+
+  render() {
     return (
-    <div className="inputForm">
-        <h1>Register</h1>
-        <form autoComplete="off">
-            <TextField className="registerInput" required id="outlined-basic" label="Username" variant="outlined" helperText="Required" />
-            <TextField className="registerInput" required id="outlined-basic" label="Password" variant="outlined" helperText="Required" />
-            <TextField className="registerInput" required id="outlined-basic" label="Phone Number" variant="outlined" helperText="Required" />
+      <div className="container">
+        <Navbar title={title}/>
+        <form className="inputForm" onSubmit={this.handleSubmit}>
+          <label>
+            Email:
+            <input type="text" value={this.state.value} onChange={this.handleEmailChange} />
+          </label>
+          <label>
+            Password:
+            <input type="text" value={this.state.value} onChange={this.handlePasswordChange} />
+          </label>
+          <input type="submit" value="Submit" />
         </form>
-        <Button>Submit</Button>
-    </div>
-    )
+      </div>
+    );
+  }
 }
 
 export default Register;
