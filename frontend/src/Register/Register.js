@@ -1,7 +1,4 @@
 import React from "react";
-import Navbar from '../Navbar/Navbar';
-
-let title = "Register"
 
 class Register extends React.Component {
   constructor(props) {
@@ -47,7 +44,6 @@ class Register extends React.Component {
   render() {
     return (
       <div className="container">
-        <Navbar title={title}/>
         <form className="inputForm" onSubmit={this.handleSubmit}>
           <label>
             Email:

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class UserPost extends React.Component {
     constructor(props) {
         super(props);
@@ -42,5 +43,6 @@ class UserPost extends React.Component {
     }
 
 }
+
 
 export default UserPost;

@@ -1,9 +1,5 @@
 import React from "react";
-import Navbar from '../Navbar/Navbar';
 import './Login.css'
-
-let title = "Login"
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -45,7 +41,6 @@ class Login extends React.Component {
   render() {
     return (
       <div className="container">
-        <Navbar title={title}/>
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:

@@ -1,6 +1,6 @@
 import React from "react";
 import "./ViewPost.css";
-import heart from "./heart2.png";
+import heart2 from "./heart2.png";
 import upArrow from "./arrowUp.png";
 import downArrow from "./arrowDown.png";
 
@@ -28,7 +28,7 @@ function ViewPost() {
         <div id="comment">
           <textarea id="textBox" type="text" />
           <Button id="heartButton">
-            <img src={heart} />
+            <img src={heart2} />
           </Button>
         </div>
       </div>
