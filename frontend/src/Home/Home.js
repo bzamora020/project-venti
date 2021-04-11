@@ -15,7 +15,7 @@ function Home() {
       <div className="container">
         <div>
           <Link className="link" to="/createpost">
-            <h1 className="title"> VENTI</h1>
+            <h1 className="title1"> VENTI</h1>
           </Link>
         </div>
 
