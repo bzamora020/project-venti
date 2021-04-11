@@ -31,13 +31,17 @@ class UserPosts extends React.Component {
       });
   }
   render() {
+    let displayPosts = (this.state.homeData == null) 
     return (
+      
       <section>
         {
-          this.state.homeData.posts &&
+          
+          this.state.homeData != null &&
           this.state.homeData.posts.map((data) => (
             <UserPost title={data.title} content={data.content} />
-          ))}
+          ))
+        }
       </section>
     );
   }

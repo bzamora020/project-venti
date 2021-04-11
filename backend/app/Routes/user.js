@@ -192,12 +192,12 @@ user.post('/feed', (req, res)=>{
                             }
                             else{
                                 console.log("AI RECCOMENDATION");
-                                console.log(JSON.stringify(allPosts));
+
                                 request.post({
                                     headers: {'content-type' : 'application/json'},
-                                    body:JSON.stringify({
-                                        generalPosts: allPosts
-                                    }),
+                                    body:JSON.stringify(
+                                       {generalPosts: allPosts}
+                                    ),
                                     url:'https://venti-services.herokuapp.com/emotionEval'
                                     
                                 }, (error, response, body)=>{
@@ -206,7 +206,7 @@ user.post('/feed', (req, res)=>{
                                         res.status(500).send({error:"Unable to get user's feed"})
                                     }
                                     else{
-                                        console.log(body);
+                                        console.log(JSON.parse(body));
                                         res.status(200).send({feed: JSON.parse(body)})
                                     }
                                 })

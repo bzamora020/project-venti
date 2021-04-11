@@ -11,13 +11,16 @@ class ViewPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      feed: [1,2,3,4,5,6],
+      feed: [],
       feed_index: 0,
       post: null,
+      commentData:""
     }
     this.getPost = this.getPost.bind(this);
     this.getPostUp = this.getPostUp.bind(this);
     this.getPostDown = this.getPostDown.bind(this);
+    this.handleCommentChange = this.handleCommentChange.bind(this);
+
   }
 
   componentDidMount() {
@@ -85,9 +88,38 @@ class ViewPost extends React.Component {
         })
     }
  }
+
+ createComment(){
   
+  fetch('/api/posts/comment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      post_id: this.state.post.id,
+      content: this.state.commentData
+    }),
+  })
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((data) => {
+      console.log(data);
+      this.setState({ post: data })
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+ }
+ handleCommentChange(event) {
+  this.setState({commentData: event.target.value});
+}
+
+
 
   render(){
+    console.log(this.state.post);
     return (
       <div>
         <div className="navbar">
@@ -117,13 +149,18 @@ class ViewPost extends React.Component {
               <label id="labelThing">Comment:</label>
               <br></br>
               {
-                // this.state.post.comments.map((comment)=>{
-                  
-                // })
+                  this.state.post.comments != null &&
+                  this.state.post.comments.map((comment)=>{
+                      <div>
+                      <span>{comment.user_id}</span>
+                      <p>{comment.content}</p>
+                      </div>
+
+                  })
               }
               <div id="comment">
-                <textarea id="textBox" type="text" />
-                <Button id="heartButton">
+                <textarea id="textBox" type="text" value={this.state.commentData} onChange={this.handleCommentChange}/>
+                <Button onClick={()=>this.createComment()} id="heartButton">
                   <img src={heart2} />
                 </Button>
               </div>
