@@ -26,41 +26,39 @@ class CreatePost extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch('/api/posts/create', {
-      method: 'POST',
-      headers:{
-        'Content-Type': 'application/json'
+    fetch("/api/posts/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(this.state),
     })
-    .then((resp)=>{
-      return resp.json();
-    })
-    .then((data)=>{
-      console.log(data);
-      this.props.history.push('/home');
-    })
-    .catch((error)=>{
-      console.error(error);
-    })
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.props.history.push("/home");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
     return (
-      <div className="container">
-        <Navbar title={title} />
+      <div>
+        <Navbar title={title} id="barr" />
         <form onSubmit={this.handleSubmit}>
           <div className="formDivs">
             <label style={style.labelss}>
               Title:
               <input
-                style={
-                  {
-                    outline:0,
-                    border: 0,
-                    borderBottom: "1px solid black"
-                  }
-                }
+                style={{
+                  outline: 0,
+                  border: 0,
+                  borderBottom: "1px solid black",
+                }}
                 type="text"
                 value={this.state.value}
                 onChange={this.handleTitleChange}
@@ -68,18 +66,15 @@ class CreatePost extends React.Component {
             </label>
           </div>
           <div className="formDivs">
-          <p>Content</p>
+            <p style={style.labelss}>Content</p>
             <label style={style.labelss}>
-              
               <textarea
-                              style={
-                                {
-                                  outline:0,
-                                  width: "100%",
-                                  height: 300,
-                           
-                                }
-                              }
+                style={{
+                  outline: 0,
+                  width: "100%",
+                  height: 300,
+                  backgroundColor: "#47B4F1",
+                }}
                 type="text"
                 value={this.state.value}
                 onChange={this.handleContentChange}
@@ -87,9 +82,9 @@ class CreatePost extends React.Component {
             </label>
           </div>
           <div>
-          <Button type="submit" value="Submit">
-            <img src={heart} />
-          </Button>
+            <Button type="submit" value="Submit">
+              <img src={heart} />
+            </Button>
           </div>
         </form>
       </div>
