@@ -11,21 +11,25 @@ class LandingPage extends React.Component{
     render(){
         return (
             <div id="LandingPageContainer" style={{height:"100%"}}>
-                <div>
-                    <h1>Venti</h1>
-                </div>
-                <div>
-                    <h1>Welcome! 😊</h1>
+                <div style = {style.banner}>
+                    <div style = {style.logo}>
+                        <h1>VENTi</h1>
+                    </div>
+                    <h1 style = {style.phrase}>"The place to vent your feeling with similar people"</h1>
+
+                    <div style = {style.welcome}>
+                        <h1>Welcome! 😊</h1>
+                    </div>
                 </div>
                 <div id="LandingPageFooter" style={style.LandingPageFooter}>
 
                         <Link style={style.RegisterButtonLink} to="/register">
-                            <button style={style.RegisterButton}>Register</button>
+                            <button class = "button" style={style.button}>Register</button>
                         </Link>
-                   
+                        <br></br>
          
                         <Link style={style.LoginButtonLink} to="/login">
-                            <button style={style.LoginButton}>Login</button>
+                            <button  style={style.button}>Login</button>
                         </Link>
          
                 </div>
@@ -37,8 +41,6 @@ class LandingPage extends React.Component{
 
 const style = {
     LandingPageFooter : {
-        position: 'absolute',
-        bottom: 0,
         height: 100,
         width: "100%",
     },
@@ -47,22 +49,37 @@ const style = {
         display: "inline-block"
     },
     RegisterButtonLink:{
-        position: "absolute",
         left: 20,
     },
     LoginButtonLink:{
-        position: "absolute",
         right: 20,
     },
-    RegisterButton:{
-        top: 0,
-        width: 100,
-        height: 100
+    button:{
+        top:0,
+        textDecoration:"none",
+        display:"inline-block",
+        marginBottom: "20px",
+        width: 250,
+        backgroundColor: "#FFE06A",
+        height: 50,
+        border:"none",
+        borderRadius: "5px",
+
     },
-    LoginButton:{
-        top: 0,
-        width: 100,
-        height: 100
+    banner:{
+        
+        fontFamily: 'Karla',
+    },
+    logo:{
+        color: "#37A1DD",
+        fontSize: "85px",
+        marginBottom:"10px"
+    },
+    welcome:{
+        padding:0,
+    },
+    phrase:{
+        fontSize:"15px",
     }
     
 }
