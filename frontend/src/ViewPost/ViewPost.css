@@ -73,3 +73,24 @@ h2
 {
     margin-top: 3%;
 }
+#leftbutton {
+    margin: 2%;
+}
+#rightbutton {
+    margin: 2%;
+}
+.button {
+    height: 50px;
+    width: 200px;
+}
+.title {
+    color: white;
+    margin-right: 33%;
+}
+.navbar {
+    background-color: #37A1DD;
+}
+.link {
+    color: black;
+    text-decoration: none;
+}

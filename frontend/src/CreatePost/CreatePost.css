@@ -14,28 +14,24 @@
 input[type="text"] {
   width: 100%;
   padding: 12px 20px;
-  box-sizing: border-box;
-  border: 3px solid #ccc;
-  border-radius: 10px;
+  outline: none;
+  border: 0px 0px 0px 3px solid #ccc;;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  background-color: #f2d091;
-  outline: none;
   resize: vertical;
 }
 input[type="text"]:focus {
-  border: 3px solid #686d8c;
+  border: 3px solid blue;
 }
 
 textarea {
-  width: 85%;
+  width: 100%;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 3px solid #ccc;
-  border-radius: 10px;
+  border: 1px solid black;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  background-color: #f2d091;
+
   outline: none;
   resize: vertical;
 }
