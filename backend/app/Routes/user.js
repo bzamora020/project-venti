@@ -153,7 +153,9 @@ user.post('/feed', (req, res)=>{
                     res.status(500).send({error: "Failed to get user posts"});
                 }
                 else{
+                    console.log(userPosts);
                     if(userPosts.length > 0){
+                        console.log("SIMILAR RECCOMENDATION");
                         let getAllPostsQuery = `SELECT * FROM posts`;
                         db.query(getAllPostsQuery, (error, allPosts)=>{
                             if(error){
@@ -182,21 +184,34 @@ user.post('/feed', (req, res)=>{
                         });
                     }
                     else{
-                        request.post({
-                            headers: {'content-type' : 'application/json'},
-                            body:JSON.stringify({
-                                generalPosts: allPosts
-                            }),
-                            url:'https://sim-text.herokuapp.com/emotionEval'
-                        }, (error, response, body)=>{
+                        let getAllPostsQuery = `SELECT * FROM posts`;
+                        db.query(getAllPostsQuery, (error, allPosts)=>{
                             if(error){
-                                console.log(error);
-                                res.status(500).send({error:"Unable to get user's feed"})
+                                console.error(error);
+                                res.send({error:"RRR"})
                             }
                             else{
-                                console.log(body);
-                                res.status(200).send({feed: JSON.parse(body)})
+                                console.log("AI RECCOMENDATION");
+                                console.log(JSON.stringify(allPosts));
+                                request.post({
+                                    headers: {'content-type' : 'application/json'},
+                                    body:JSON.stringify({
+                                        generalPosts: allPosts
+                                    }),
+                                    url:'https://venti-services.herokuapp.com/emotionEval'
+                                    
+                                }, (error, response, body)=>{
+                                    if(error){
+                                        console.log(error);
+                                        res.status(500).send({error:"Unable to get user's feed"})
+                                    }
+                                    else{
+                                        console.log(body);
+                                        res.status(200).send({feed: JSON.parse(body)})
+                                    }
+                                })
                             }
+
                         })
                     }
                 }
