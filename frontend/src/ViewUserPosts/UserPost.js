@@ -1,5 +1,10 @@
 import React from "react";
 
+import { Button } from "@material-ui/core";
+
+import "./UserPost.css";
+
+
 const UserPost = (props) => (
   <div>
     <Button>
