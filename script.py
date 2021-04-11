@@ -1,13 +1,14 @@
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 import json
+import sys
 def takeRatio(elem):
     return elem["avg"]
 
+# with open('data.json') as json_file:
+#     posts = json.load(json_file)
 
-with open('data.json') as json_file:
-    posts = json.load(json_file)
-
+posts = json.load(sys.argv[0])
 ratiosOfGenPosts = {}
 ratioNumber = []
 orderedPosts = []
@@ -24,3 +25,4 @@ for x in posts['generalPosts']:
 
 ratioNumber.sort(reverse = True,key=takeRatio)
 print(ratioNumber)
+sys.stdout.flush()
