@@ -24,10 +24,25 @@ class CreatePost extends React.Component {
     this.setState({ content: event.target.value });
   }
   handleSubmit(event) {
-    alert(
-      "A name was submitted: " + this.state.title + " " + this.state.content
-    );
     event.preventDefault();
+
+    fetch('/api/posts/create', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state),
+    })
+    .then((resp)=>{
+      return resp.json();
+    })
+    .then((data)=>{
+      console.log(data);
+      this.props.history.push('/home');
+    })
+    .catch((error)=>{
+      console.error(error);
+    })
   }
 
   render() {
@@ -39,6 +54,13 @@ class CreatePost extends React.Component {
             <label style={style.labelss}>
               Title:
               <input
+                style={
+                  {
+                    outline:0,
+                    border: 0,
+                    borderBottom: "1px solid black"
+                  }
+                }
                 type="text"
                 value={this.state.value}
                 onChange={this.handleTitleChange}
@@ -46,9 +68,18 @@ class CreatePost extends React.Component {
             </label>
           </div>
           <div className="formDivs">
+          <p>Content</p>
             <label style={style.labelss}>
-              Content:
-              <input
+              
+              <textarea
+                              style={
+                                {
+                                  outline:0,
+                                  width: "100%",
+                                  height: 300,
+                           
+                                }
+                              }
                 type="text"
                 value={this.state.value}
                 onChange={this.handleContentChange}
