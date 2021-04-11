@@ -1,0 +1,49 @@
+#foot
+{
+    height: 100px;
+    background-color: #37A1DD;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: .5%;
+}
+
+#leftbutton, #rightbutton {
+    margin: 2%;
+    font-family: Karla;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 15px;
+    background-color: white;
+}
+
+#leftbutton:hover, #rightbutton:hover
+{
+    background-color: #FFE06A;
+    color: #37A1DD;
+}
+
+/* #rightbutton {
+    margin: 2%;
+    font-family: Karla;
+    font-size: 18px;
+    font-weight: 400;
+} */
+.button {
+    height: 50px;
+    width: 200px;
+}
+
+.link {
+    color: #37A1DD;
+    align-items: center;
+
+}
+
+.title{
+    color: #37A1DD;
+    font-family: Karla;
+    font-weight: bold;
+    font-size: 60px;
+}
+
