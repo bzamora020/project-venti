@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "backend for venti",
   "main": "index.js",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,9 +22,11 @@
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
     "mysql": "^2.18.1",
+    "request": "^2.88.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

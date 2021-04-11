@@ -2,7 +2,7 @@ const express = require('express');
 const user = express.Router();
 const session = require('./session');
 const db = require('../db');
-const axios = require('axios');
+const request = require('request');
 
 function buildPost(post){
     return new Promise((resolve, reject)=>{
@@ -41,7 +41,6 @@ function buildPost(post){
                             });
                         });
                         buildComments.then((postObj)=>{
-    
                             counter++;
                             if(counter == (comments.length)){
                                 resolve(postObj);
@@ -143,7 +142,7 @@ user.post('/getHome', (req, res)=>{
 });
 
 
-user.get('/feed', (req, res)=>{
+user.post('/feed', (req, res)=>{
     let sessionToken = req.cookies['session'];
     session.verifySessionToken(sessionToken)
         .then((user)=>{
@@ -162,24 +161,29 @@ user.get('/feed', (req, res)=>{
                                 res.status(500).send({error:"Unable to get user's feed"})
                             }
                             else{
-                                axios.post('https://sim-text.herokuapp.com/simChecker',{
-                                    userPosts: userPosts,
-                                    generalPosts: allPosts
-                                })
-                                .then(userFeed =>{
-                                    console.log(userFeed);
-                                    res.send({feed: userFeed})
-                                })
-                                .catch(error => {
-                                    res.status(500).send({error:"Unable to get user's feed"})
-                                    console.error(error);
+                                request.post({
+                                    headers: {'content-type' : 'application/json'},
+                                    body:JSON.stringify({
+                                        userPosts: userPosts,
+                                        generalPosts: allPosts
+                                    }),
+                                    url:'https://sim-text.herokuapp.com/simChecker'
+                                }, (error, response, body)=>{
+                                    if(error){
+                                        console.log(error);
+                                        res.status(500).send({error:"Unable to get user's feed"})
+                                    }
+                                    else{
+                                        console.log(body);
+                                        res.status(200).send({feed: JSON.parse(body)})
+                                    }
                                 })
                             }
                         });
                     }
                     else{
                         // make request to ai to give results
-                        res.status(200).send({msg: "Post something to make this place feel like home"});
+                        res.status(200).send({msg: "Post if you want something in your feed"});
                     }
                 }
             })
