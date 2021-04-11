@@ -46,3 +46,8 @@ textarea:focus {
   display: inline-block;
   text-align: left;
 }
+
+#barr
+{
+  margin-left: -5%;
+}

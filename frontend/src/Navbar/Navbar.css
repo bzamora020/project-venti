@@ -1,9 +1,4 @@
-#leftbutton {
-    margin: 2%;
-}
-#rightbutton {
-    margin: 2%;
-}
+
 .button {
     height: 50px;
     width: 200px;
@@ -14,6 +9,8 @@
     justify-content: space-between;
     align-items: center;
     height: 100px;
+    padding-right: 2%;
+    padding-left: 2%;
 }
 .link {
     color: black;
