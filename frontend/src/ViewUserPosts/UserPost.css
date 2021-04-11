@@ -1,48 +1,77 @@
-#testing
-{
-    width: 600px;
-    height: 200px;
-    box-shadow: 7px 7px 2px 1px rgba(0, 0, 1, 0.219);
-    background-color: white;
-    border-width: 2px;
-    border-radius: 10px;
-    margin-top:10%;
-    margin-left: 10%;
-    display: inline-block;
-    padding: 1%;
-    padding-left: 3%;
-    padding-top: 3%;
+#testing {
+  width: 600px;
+  height: 200px;
+  box-shadow: 7px 7px 2px 1px rgba(0, 0, 1, 0.219);
+  background-color: white;
+  border-width: 2px;
+  border-radius: 10px;
+  margin-top: 10%;
+  margin-left: 10%;
+  display: inline-block;
+  padding: 1%;
+  padding-left: 3%;
+  padding-top: 3%;
 }
-#testing:hover
-{
-    background-color: #FFE06A;
+#testing:hover {
+  background-color: #ffe06a;
 }
 
-#message
-{
-    font-weight: 5500;
-    color: #37A1DD;
-    font-size: 18px;
-    text-align: left;
-    font-family: Karla;
+#message {
+  font-weight: 5500;
+  color: #37a1dd;
+  font-size: 18px;
+  text-align: left;
+  font-family: Karla;
 }
-
-#postTittle
-{
+#postTittle, #popTittle {
     color: black;
     text-align: left;
     font-weight: 600;
     margin-top: 20px;
+    margin-bottom: 5%;
+  }
+
+#popTittle
+{
+    font-size: 20px;
+    font-weight: 700;
+}
+#popMessage
+{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    color: #37a1dd;
 }
 
-#liIcon
-{
-    float:left;
-    margin-right: 10px;
-    margin-top: 10px;
+#liIcon {
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
-#messageCard
-{
-    float: left;
+#messageCard {
+  float: left;
 }
+#popups {
+  background-color: white;
+  border-radius: 30px;
+  width: 900px;
+  height: 900px;
+  position: fixed;
+  /* box-shadow: 7px 7px 2px 1px rgba(0, 0, 1, 0.219); */
+  -webkit-box-shadow: 0 0 15px black;
+  box-shadow: 0 0 15px black;
+  border-width: 2px;
+  margin-left: 15%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 4%;
+}
+
+#shadows {
+  background-color: rgba(0, 0, 0, 0.268);
+  height: 1500px;
+  height: 1500px;
+}
+
