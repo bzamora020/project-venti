@@ -29,20 +29,24 @@ class ViewPost extends React.Component {
       },
       body: JSON.stringify({}),
     })
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        console.log(data);
-        this.setState({ feed: data })
-        this.getPost(this.state.feed_index);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
+    .then((resp)=>{
+      return resp.json();
+    })
+    .then((data)=>{
+      console.log(data);
+      this.setState({feed:data.feed},
+        ()=>{
+          this.getPost(this.state.feed_index);
+        })
+      
+    })
+    .catch((error)=>{
+      console.error(error);
+    })
   }
 
-  getPost(feed_index) {
+  getPost(feed_index){
+    console.log(this.state.feed[feed_index]);
     fetch('/api/posts/getPost', {
       method: 'POST',
       headers: {
@@ -62,7 +66,29 @@ class ViewPost extends React.Component {
       })
   }
 
-  render() {
+
+  getPostUp(){
+    if(this.state.feed_index > 0){
+      this.setState({feed_index: this.state.feed_index - 1},
+        ()=>{
+          this.getPost(this.state.feed_index);
+          console.log(this.state.feed_index);
+        })
+      
+    }
+  }
+
+  getPostDown(){
+    if(this.state.feed_index < this.state.feed.length - 1){
+        this.setState({feed_index: this.state.feed_index + 1}, ()=>{
+          this.getPost(this.state.feed_index);
+          console.log(this.state.feed_index);
+        })
+    }
+ }
+  
+
+  render(){
     return (
       <div>
         <div className="navbar">
@@ -76,13 +102,7 @@ class ViewPost extends React.Component {
         {
           this.state.post &&
           <div>
-            <Button id="upArr" onclick={() => {
-              if (this.state.feed_index > 0) {
-                this.setState({ feed_index: this.state.feed_index - 1 })
-              }
-              this.getPost(this.state.feed_index - 1);
-            }
-            }>
+            <Button id = "upArr" onClick={()=>this.getPostUp()}>
               <img src={upArrow} />
             </Button>
             <div className="box">
@@ -109,13 +129,9 @@ class ViewPost extends React.Component {
                 </Button>
               </div>
             </div>
-            <Button id="doArr" onclick={() => {
-              if (this.state.feed_index < this.state.feed.length - 1) {
-                this.setState({ feed_index: this.state.feed_index + 1 })
-              }
-              this.getPost(this.state.feed_index + 1);
-            }
-            }>
+
+            <Button id = "doArr" onClick={()=> this.getPostDown()}>
+
               <img src={downArrow} />
             </Button>
           </div>
