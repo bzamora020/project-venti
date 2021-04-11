@@ -2,6 +2,7 @@ const express = require('express');
 const user = express.Router();
 const session = require('./session');
 const db = require('../db');
+const axios = require('axios');
 
 function buildPost(post){
     return new Promise((resolve, reject)=>{
@@ -140,5 +141,54 @@ user.post('/getHome', (req, res)=>{
             res.status(403).send({error:"Failed authentication!"});
         })
 });
+
+
+user.get('/feed', (req, res)=>{
+    let sessionToken = req.cookies['session'];
+    session.verifySessionToken(sessionToken)
+        .then((user)=>{
+            let getUserPostsQuery = `SELECT * FROM posts WHERE user_id=${user.user_id}`;
+            db.query(getUserPostsQuery, (error, userPosts)=>{
+                if(error){
+                    console.error(error);
+                    res.status(500).send({error: "Failed to get user posts"});
+                }
+                else{
+                    if(userPosts.length > 0){
+                        let getAllPostsQuery = `SELECT * FROM posts`;
+                        db.query(getAllPostsQuery, (error, allPosts)=>{
+                            if(error){
+                                console.error(error);
+                                res.status(500).send({error:"Unable to get user's feed"})
+                            }
+                            else{
+                                axios.post('https://sim-text.herokuapp.com/simChecker',{
+                                    userPosts: userPosts,
+                                    generalPosts: allPosts
+                                })
+                                .then(userFeed =>{
+                                    console.log(userFeed);
+                                    res.send({feed: userFeed})
+                                })
+                                .catch(error => {
+                                    res.status(500).send({error:"Unable to get user's feed"})
+                                    console.error(error);
+                                })
+                            }
+                        });
+                    }
+                    else{
+                        // make request to ai to give results
+                        res.status(200).send({msg: "Post something to make this place feel like home"});
+                    }
+                }
+            })
+        })  
+        .catch((error)=>{
+            console.error(error);
+            res.status(403).send({error:"Failed authentication!"});
+        })
+})
+
 
 module.exports = user;

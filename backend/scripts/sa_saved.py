@@ -18,7 +18,18 @@ tokenizer = None
 with open('tokenizer.pickle', 'rb') as handle:
      tokenizer = pickle.load(handle)
 
-sentence = ["I'm so freaking sad this is very depressing omg I am so sad!", "I am a joyous I am so happy today is an amazing"]
+
 sequences = tokenizer.texts_to_sequences(sentence)
 padded = pad_sequences(sequences, maxlen=max_length, padding=padding_type, truncating=trunc_type)
-print(model.predict(padded))
+results = model.predict(padded)
+print(results)
+
+server = []
+
+for i in range(len(results)):
+     server[i]['ss'] = sentiment_score[i]
+
+def takeSS(elem):
+     return elem['ss']
+
+server.sort(reverse = True, key=takeSS)
