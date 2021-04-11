@@ -182,8 +182,22 @@ user.post('/feed', (req, res)=>{
                         });
                     }
                     else{
-                        // make request to ai to give results
-                        res.status(200).send({msg: "Post if you want something in your feed"});
+                        request.post({
+                            headers: {'content-type' : 'application/json'},
+                            body:JSON.stringify({
+                                generalPosts: allPosts
+                            }),
+                            url:'https://sim-text.herokuapp.com/emotionEval'
+                        }, (error, response, body)=>{
+                            if(error){
+                                console.log(error);
+                                res.status(500).send({error:"Unable to get user's feed"})
+                            }
+                            else{
+                                console.log(body);
+                                res.status(200).send({feed: JSON.parse(body)})
+                            }
+                        })
                     }
                 }
             })
