@@ -66,6 +66,7 @@ class ViewPost extends React.Component {
       })
   }
 
+
   getPostUp(){
     if(this.state.feed_index > 0){
       this.setState({feed_index: this.state.feed_index - 1},
@@ -128,7 +129,9 @@ class ViewPost extends React.Component {
                 </Button>
               </div>
             </div>
+
             <Button id = "doArr" onClick={()=> this.getPostDown()}>
+
               <img src={downArrow} />
             </Button>
           </div>
