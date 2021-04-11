@@ -20,8 +20,28 @@ class Register extends React.Component {
     this.setState({password: event.target.value});
   }
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.email + ' ' + this.state.password);
     event.preventDefault();
+
+
+    console.log(this.props);
+    fetch('/api/auth/register', {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state),
+    })
+    .then((resp)=>{
+      return resp.json();
+    })
+    .then((data)=>{
+      console.log(data);
+      this.props.history.push('/home');
+    })
+    .catch((error)=>{
+      console.error(error);
+    })
+      
   }
 
   render() {
