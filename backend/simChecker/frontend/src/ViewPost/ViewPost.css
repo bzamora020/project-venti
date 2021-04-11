@@ -1,0 +1,75 @@
+.box
+{
+    border: 5px solid #686D8C;
+    height: 600px;
+    margin-top: 6%;
+    margin-right: 10%;
+    margin-left: 10%;
+    background: #F2D091;
+    
+}
+
+.topBox
+{
+    border-bottom: 5px solid white;
+    background: #ECB143;
+    text-align: left;
+    padding-left: 3%;
+    
+}
+
+h2
+{
+    display: inline-block;
+    margin-right: 5px;
+}
+#labelThing
+{
+    color: black;
+    font-weight: 500;
+    margin-left: -80%;
+}
+.blog
+{
+    font-weight: 600;
+    font-size: 18px;
+    font-family: Tauri;
+    text-align: center;
+}
+
+#textBox {
+    width: 85%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    background-color: #ECB143;
+    outline: none;
+    resize: vertical;
+    margin-top: 1%;
+    display: inline-block;
+
+  }
+  #textBox:focus {
+    border: 3px solid #686D8C;
+  }
+
+#heartButton
+{
+    display: inline-block;
+    margin-bottom: 2.5%;
+    margin-left: 1%;
+}
+
+#upArr 
+{
+    margin-top: 2%;
+    margin-bottom: -3%;
+}
+
+#doArr
+{
+    margin-top: 3%;
+}
