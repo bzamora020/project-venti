@@ -24,5 +24,8 @@
     "helmet": "^4.4.1",
     "mysql": "^2.18.1",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
