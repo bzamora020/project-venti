@@ -22,33 +22,38 @@ function buildPost(post){
             }
             else{
                 let counter = 0;
-                for(i = 0; i < comments.length; i++){
-                    let buildComments = new Promise((resolve, reject)=>{
-                        let comment = comments[i];
-                        let getCommenterNameQuery = `SELECT name FROM users WHERE id=${db.escape(comment.user_id)}`;
-                        db.query(getCommenterNameQuery, (error, results)=>{
-                            if(error){
-                                console.error(error);
-                                reject(Error("Unable to get commenter name"));
-                            }
-                            else{
-                                comment.name = results[0].name;
-                                postObj.comments.push(comment);
+                if(comments.length > 0){
+                    for(i = 0; i < comments.length; i++){
+                        let buildComments = new Promise((resolve, reject)=>{
+                            let comment = comments[i];
+                            let getCommenterNameQuery = `SELECT name FROM users WHERE id=${db.escape(comment.user_id)}`;
+                            db.query(getCommenterNameQuery, (error, results)=>{
+                                if(error){
+                                    console.error(error);
+                                    reject(Error("Unable to get commenter name"));
+                                }
+                                else{
+                                    comment.name = results[0].name;
+                                    postObj.comments.push(comment);
+                                    resolve(postObj);
+                                }
+                            });
+                        });
+                        buildComments.then((postObj)=>{
+    
+                            counter++;
+                            if(counter == (comments.length)){
                                 resolve(postObj);
                             }
-                        });
-                    });
-                    buildComments.then((postObj)=>{
-
-                        counter++;
-                        if(counter == (comments.length)){
-                            resolve(postObj);
-                        }
-                    })
-                    .catch((error)=>{
-                        reject(Error(error));
-                    })
-                }                
+                        })
+                        .catch((error)=>{
+                            reject(Error(error));
+                        })
+                    }  
+                }
+                else{
+                    resolve(postObj);
+                }              
             }
         });
 
