@@ -52,18 +52,20 @@
 
 #messageCard {
   float: left;
+  margin-right: 5%;
+  margin-left: 5%;
 }
 #popups {
   background-color: white;
   border-radius: 30px;
-  width: 900px;
-  height: 900px;
+  min-width: 60%;
+  min-height: 60%;
   position: fixed;
   /* box-shadow: 7px 7px 2px 1px rgba(0, 0, 1, 0.219); */
   -webkit-box-shadow: 0 0 15px black;
   box-shadow: 0 0 15px black;
   border-width: 2px;
-  margin-left: 15%;
+  margin-left: 8%;
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 4%;
